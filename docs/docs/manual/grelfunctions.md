@@ -6,11 +6,11 @@ sidebar_label: GREL functions
 
 ## Reading this reference {#reading-this-reference}
 
-For the reference below, the function is given in full-length notation and the in-text examples are written in dot notation. Shorthands are used to indicate the kind of [data type](exploring#data-types) used in each function: s for string, b for boolean, n for number, d for date, a for array, p for a regex pattern, and o for object (meaning any data type), as well as “null” and “error” data types. 
+For the reference below, the function is given in full-length notation and the in-text examples are written in dot notation. Shorthands are used to indicate the kind of [data type](exploring#data-types) used in each function: s for string, b for boolean, n for number, d for date, a for array, p for a regex pattern, and o for object (meaning any data type), as well as “null” and “error” data types.
 
-If a function can take more than one kind of data as input or can output more than one kind of data, that is indicated with more than one letter (as with “s or a”) or with o for object, meaning it can take any type of data (string, boolean, date, number, etc.). 
+If a function can take more than one kind of data as input or can output more than one kind of data, that is indicated with more than one letter (as with “s or a”) or with o for object, meaning it can take any type of data (string, boolean, date, number, etc.).
 
-We also use shorthands for substring (“sub”) and separator string (“sep”). 
+We also use shorthands for substring (“sub”) and separator string (“sep”).
 Optional arguments will say “(optional)”.
 
 In places where OpenRefine will accept a string (s) or a regex pattern (p), you can supply a string by putting it in quotes. If you wish to use any [regex](expressions#regular-expressions) notation, wrap the pattern in forward slashes.
@@ -41,7 +41,7 @@ Returns the length of string s as a number.
 
 ###### toString(o, string format (optional)) {#tostringo-string-format-optional}
 
-Takes any value type (string, number, date, boolean, error, null) and gives a string version of that value. 
+Takes any value type (string, number, date, boolean, error, null) and gives a string version of that value.
 
 You can use toString() to convert numbers to strings with rounding, using an [optional string format](https://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html). For example, if you applied the expression `value.toString("%.0f")` to a column:
 
@@ -60,15 +60,15 @@ Note: In OpenRefine, using toString() on a null cell outputs the string “null�
 
 ###### startsWith(s, sub) {#startswiths-sub}
 
-Returns a boolean indicating whether s starts with sub. For example, `"food".startsWith("foo")` returns true, whereas `"food".startsWith("bar")` returns false. 
+Returns a boolean indicating whether s starts with sub. For example, `"food".startsWith("foo")` returns true, whereas `"food".startsWith("bar")` returns false.
 
 ###### endsWith(s, sub) {#endswiths-sub}
 
-Returns a boolean indicating whether s ends with sub. For example, `"food".endsWith("ood")` returns true, whereas `"food".endsWith("odd")` returns false. 
+Returns a boolean indicating whether s ends with sub. For example, `"food".endsWith("ood")` returns true, whereas `"food".endsWith("odd")` returns false.
 
 ###### contains(s, sub or p) {#containss-sub-or-p}
 
-Returns a boolean indicating whether s contains sub, which is either a substring or a regex pattern. For example, `"food".contains("oo")` returns true whereas `"food".contains("ee")` returns false. 
+Returns a boolean indicating whether s contains sub, which is either a substring or a regex pattern. For example, `"food".contains("oo")` returns true whereas `"food".contains("ee")` returns false.
 
 You can search for a regular expression by wrapping it in forward slashes rather than quotes: `"rose is a rose".contains(/\s+/)` returns true. startsWith() and endsWith() can only take strings, while contains() can take a regex pattern, so you can use contains() to look for beginning and ending string patterns.  
 
@@ -130,7 +130,7 @@ Returns the first character index of sub as it last occurs in s; or, returns -1 
 
 ###### replace(s, s or p find, s replace) {#replaces-s-or-p-find-s-replace}
 
-Returns the string obtained by replacing the find string with the replace string in the inputted string. For example, `"The cow jumps over the moon and moos".replace("oo", "ee")` returns the string “The cow jumps over the meen and mees”. Find can be a regex pattern. For example, `"The cow jumps over the moon and moos".replace(/\s+/, "_")` will return “The_cow_jumps_over_the_moon_and_moos”. 
+Returns the string obtained by replacing the find string with the replace string in the inputted string. For example, `"The cow jumps over the moon and moos".replace("oo", "ee")` returns the string “The cow jumps over the meen and mees”. Find can be a regex pattern. For example, `"The cow jumps over the moon and moos".replace(/\s+/, "_")` will return “The_cow_jumps_over_the_moon_and_moos”.
 
 You cannot find or replace nulls with this, as null is not a string. You can instead:
 
@@ -151,7 +151,7 @@ The length of the find array must be the same as the length of the replace array
 
 Outputs an array of all consecutive substrings inside string s that match the substring or [regex](expressions#grel-supported-regex) pattern p. For example, `"abeadsabmoloei".find(/[aeio]+/)` would result in the array [ "a", "ea", "a", "o", "oei" ].
 
-You can supply a substring instead of p, by putting it in quotes, and OpenRefine will compile it into a regex pattern. Anytime you supply quotes, OpenRefine interprets the contents as a string, not regex. If you wish to use any regex notation, wrap the pattern in forward slashes. 
+You can supply a substring instead of p, by putting it in quotes, and OpenRefine will compile it into a regex pattern. Anytime you supply quotes, OpenRefine interprets the contents as a string, not regex. If you wish to use any regex notation, wrap the pattern in forward slashes.
 
 ###### match(s, p) {#matchs-p}
 
@@ -206,11 +206,11 @@ Returns an array of strings obtained by splitting s into groups of consecutive c
 
 ###### partition(s, s or p fragment, b omitFragment (optional)) {#partitions-s-or-p-fragment-b-omitfragment-optional}
 
-Returns an array of strings [ a, fragment, z ] where a is the substring within s before the first occurrence of fragment, and z is the substring after fragment. Fragment can be a string or a regex. For example, `"internationalization".partition("nation")` returns 3 strings: [ "inter", "nation", "alization" ]. If s does not contain fragment, it returns an array of [ s, "", "" ] (the original unpartitioned string, and two empty strings). 
+Returns an array of strings [ a, fragment, z ] where a is the substring within s before the first occurrence of fragment, and z is the substring after fragment. Fragment can be a string or a regex. For example, `"internationalization".partition("nation")` returns 3 strings: [ "inter", "nation", "alization" ]. If s does not contain fragment, it returns an array of [ s, "", "" ] (the original unpartitioned string, and two empty strings).
 
 If the omitFragment boolean is true, for example with `"internationalization".partition("nation", true)`, the fragment is not returned. The output is [ "inter", "alization" ].
 
-You can use regex for your fragment. The expresion `"abcdefgh".partition(/c.e/)` will output  [“abc”, "cde", defgh” ]. 
+You can use regex for your fragment. The expression `"abcdefgh".partition(/c.e/)` will output  ["abc", "cde", "fgh" ].
 
 ###### rpartition(s, s or p fragment, b omitFragment (optional)) {#rpartitions-s-or-p-fragment-b-omitfragment-optional}
 
@@ -228,7 +228,7 @@ Escapes s in the given escaping mode. The mode can be one of: "html", "xml", "cs
 
 ###### unescape(s, s mode) {#unescapes-s-mode}
 
-Unescapes s in the given escaping mode. The mode can be one of: "html", "xml", "csv", "url", "javascript". Note that quotes are required around your mode. See the [recipes](https://github.com/OpenRefine/OpenRefine/wiki/Recipes#atampampt----att) for examples of escaping and unescaping. 
+Unescapes s in the given escaping mode. The mode can be one of: "html", "xml", "csv", "url", "javascript". Note that quotes are required around your mode. See the [recipes](https://github.com/OpenRefine/OpenRefine/wiki/Recipes#atampampt----att) for examples of escaping and unescaping.
 
 ###### encode(s, s encoding) {#encodes-s-encoding}
 
@@ -254,7 +254,7 @@ Returns a phonetic encoding of a string, based on an available phonetic algorith
 
 Returns s reinterpreted through the given character encoders. You must supply one of the [supported encodings](http://java.sun.com/j2se/1.5.0/docs/guide/intl/encoding.doc.html) for each of the original source and the target output. Note that quotes are required around your character encoder.
 
-When an OpenRefine project is started, data is imported and interpreted. A specific character encoding is identified or manually selected at that time (such as UTF-8). You can reinterpret a column into another specificed encoding using this function. This function may not fix your data; it may be better to use this in conjunction with new projects to test the interpretation, and pre-format your data as needed. 
+When an OpenRefine project is started, data is imported and interpreted. A specific character encoding is identified or manually selected at that time (such as UTF-8). You can reinterpret a column into another specificed encoding using this function. This function may not fix your data; it may be better to use this in conjunction with new projects to test the interpretation, and pre-format your data as needed.
 
 ###### fingerprint(s) {#fingerprints}
 
@@ -319,16 +319,16 @@ The GREL expression `forEach(value.parseJson().keywords,v,v.text).join(":::")` w
 ### Jsoup XML and HTML parsing {#jsoup-xml-and-html-parsing}
 
 ###### parseHtml(s) {#parsehtmls}
-Given a cell full of HTML-formatted text, parseHtml() simplifies HTML tags (such as by removing “ /” at the end of self-closing tags), closes any unclosed tags, and inserts linebreaks and indents for cleaner code. You cannot pass parseHtml() a URL, but you can pre-fetch HTML with the <span class="menuItems">[Add column by fetching URLs](columnediting#add-column-by-fetching-urls)</span> menu option. 
+Given a cell full of HTML-formatted text, parseHtml() simplifies HTML tags (such as by removing “ /” at the end of self-closing tags), closes any unclosed tags, and inserts linebreaks and indents for cleaner code. You cannot pass parseHtml() a URL, but you can pre-fetch HTML with the <span class="menuItems">[Add column by fetching URLs](columnediting#add-column-by-fetching-urls)</span> menu option.
 
-A cell cannot store the output of parseHtml() unless you convert it with toString(): for example, `value.parseHtml().toString()`. 
+A cell cannot store the output of parseHtml() unless you convert it with toString(): for example, `value.parseHtml().toString()`.
 
-When parseHtml() simplifies HTML, it can sometimes introduce errors. When closing tags, it makes its best guesses based on line breaks, indentation, and the presence of other tags. You may need to manually check the results. 
+When parseHtml() simplifies HTML, it can sometimes introduce errors. When closing tags, it makes its best guesses based on line breaks, indentation, and the presence of other tags. You may need to manually check the results.
 
 You can then extract or [select()](#selects-element) which portions of the HTML document you need for further splitting, partitioning, etc. An example of extracting all table rows from a div using parseHtml().select() together is described more in depth at [StrippingHTML](https://github.com/OpenRefine/OpenRefine/wiki/StrippingHTML).
 
 ###### parseXml(s) {#parsexmls}
-Given a cell full of XML-formatted text, parseXml() returns a full XML document and adds any missing closing tags. You can then extract or [select()](#selects-element) which portions of the XML document you need for further splitting, partitioning, etc. Functions the same way as parseHtml() is described above. 
+Given a cell full of XML-formatted text, parseXml() returns a full XML document and adds any missing closing tags. You can then extract or [select()](#selects-element) which portions of the XML document you need for further splitting, partitioning, etc. Functions the same way as parseHtml() is described above.
 
 ###### select(s, element) {#selects-element}
 Returns an array of all the desired elements from an HTML or XML document, if the element exists. Elements are identified using the [Jsoup selector syntax](https://jsoup.org/apidocs/org/jsoup/select/Selector.html). For example, `value.parseHtml().select("img.portrait")[0]` would return the entirety of the first “img” tag with the “portrait” class found in the parsed HTML inside `value`. Returns an empty array if no matching element is found. Use with toString() to capture the results in a cell. A tutorial of select() is shown in [StrippingHTML](https://github.com/OpenRefine/OpenRefine/wiki/StrippingHTML).
@@ -346,7 +346,7 @@ Returns a string from an attribute on an HTML element. Use it in conjunction wit
 Returns a string from an attribute on an XML element. Functions the same way htmlAttr() is described above. Use it in conjunction with parseXml().
 
 ###### htmlText(element) {#htmltextelement}
-Returns a string of the text from within an HTML element (including all child elements), removing HTML tags and line breaks inside the string. Use it in conjunction with parseHtml() and select() to provide an element, as in the following example: `value.parseHtml().select("div.footer")[0].htmlText()`. 
+Returns a string of the text from within an HTML element (including all child elements), removing HTML tags and line breaks inside the string. Use it in conjunction with parseHtml() and select() to provide an element, as in the following example: `value.parseHtml().select("div.footer")[0].htmlText()`.
 
 ###### xmlText(element) {#xmltextelement}
 Returns a string of the text from within an XML element (including all child elements). Functions the same way htmlText() is described above. Use it in conjunction with parseXml() and select() to provide an element.
@@ -384,13 +384,13 @@ Given a valid URI string (for example: https://www.openrefine.org:80/documentati
 ## Array functions {#array-functions}
 
 ###### length(a) {#lengtha}
-Returns the size of an array, meaning the number of objects inside it. Arrays can be empty, in which case length() will return 0. 
+Returns the size of an array, meaning the number of objects inside it. Arrays can be empty, in which case length() will return 0.
 
 ###### slice(a, n from, n to (optional)) {#slicea-n-from-n-to-optional}
 Returns a sub-array of a given array, from the first index provided and up to and excluding the optional last index provided. Remember that array objects are indexed starting at 0. If the to value is omitted, it is understood to be the end of the array. For example, `[0, 1, 2, 3, 4].slice(1, 3)` returns [ 1, 2 ], and `[ 0, 1, 2, 3, 4].slice(2)` returns [ 2, 3, 4 ]. Also works with strings; see [String functions](#slices-n-from-n-to-optional).
 
 ###### get(a, n from, n to (optional)) {#geta-n-from-n-to-optional}
-Returns a sub-array of a given array, from the first index provided and up to and excluding the optional last index provided. Remember that array objects are indexed starting at 0. 
+Returns a sub-array of a given array, from the first index provided and up to and excluding the optional last index provided. Remember that array objects are indexed starting at 0.
 
 If the to value is omitted, only one array item is returned, as a string, instead of a sub-array. To return a sub-array from one index to the end, you can set the to argument to a very high number such as `value.get(2,999)` or you can use something like `with(value,a,a.get(1,a.length()))` to count the length of each array.
 
@@ -403,7 +403,7 @@ Returns true if the array contains the desired string, and false otherwise. Will
 Reverses the array. For example, `[ 0, 1, 2, 3].reverse()` returns the array [ 3, 2, 1, 0 ].
 
 ###### sort(a) {#sorta}
-Sorts the array in ascending order. Sorting is case-sensitive, uppercase first and lowercase second. For example, `[ "al", "Joe", "Bob", "jim" ].sort()` returns the array [ "Bob", "Joe", "al", "jim" ]. 
+Sorts the array in ascending order. Sorting is case-sensitive, uppercase first and lowercase second. For example, `[ "al", "Joe", "Bob", "jim" ].sort()` returns the array [ "Bob", "Joe", "al", "jim" ].
 
 ###### sum(a) {#suma}
 Return the sum of the numbers in the array. For example, `[ 2, 1, 0, 3 ].sum()` returns 6.
@@ -412,9 +412,9 @@ Return the sum of the numbers in the array. For example, `[ 2, 1, 0, 3 ].sum()` 
 Joins the items in the array with sep, and returns it all as a string. For example, `[ "and", "or", "not" ].join("/")` returns the string “and/or/not”.
 
 ###### uniques(a) {#uniquesa}
-Returns the array with duplicates removed. Case-sensitive. For example, `[ "al", "Joe", "Bob", "Joe", "Al", "Bob" ].uniques()` returns the array [ "Joe", "al", "Al", "Bob" ]. 
+Returns the array with duplicates removed. Case-sensitive. For example, `[ "al", "Joe", "Bob", "Joe", "Al", "Bob" ].uniques()` returns the array [ "Joe", "al", "Al", "Bob" ].
 
-As of OpenRefine 3.4.1, uniques() reorders the array items it returns; in 3.4 beta 644 and onwards, it preserves the original order (in this case, [ "al", "Joe", "Bob", "Al" ]). 
+As of OpenRefine 3.4.1, uniques() reorders the array items it returns; in 3.4 beta 644 and onwards, it preserves the original order (in this case, [ "al", "Joe", "Bob", "Al" ]).
 
 ## Date functions {#date-functions}
 
@@ -426,7 +426,7 @@ Returns the current time according to your system clock, in the [ISO 8601 extend
 
 Returns the inputted object converted to a date object. Without arguments, it returns the ISO 8601 extended format. With arguments, you can control the output format:
 *   monthFirst: set false if the date is formatted with the day before the month.
-*   formatN: attempt to parse the date using an ordered list of possible formats. Supply formats based on the [SimpleDateFormat](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) syntax (and see the table below for a handy reference). 
+*   formatN: attempt to parse the date using an ordered list of possible formats. Supply formats based on the [SimpleDateFormat](https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html) syntax (and see the table below for a handy reference).
 
 For example, you can parse a column containing dates in different formats, such as cells with “Nov-09” and “11/09”, using `value.toDate('MM/yy','MMM-yy').toString('yyyy-MM')` and both will output “2009-11”. For another example, “1/4/2012 13:30:00” can be parsed into a date using `value.toDate('d/M/y H&#58;m&#58;s')`.
 
@@ -468,7 +468,7 @@ Returns a date changed by the given amount in the given unit of time (see the ta
 
 ###### datePart(d, s timeUnit) {#datepartd-s-timeunit}
 
-Returns part of a date. The data type returned depends on the unit (see the table below). 
+Returns part of a date. The data type returned depends on the unit (see the table below).
 
 OpenRefine supports the following values for timeUnit:
 
@@ -572,15 +572,15 @@ Returns a boolean indicating whether o has a member field called [name](expressi
 Returns the first non-null from a series of objects. For example, `coalesce(value, "")` would return an empty string “” if `value` was null, but otherwise return `value`.
 
 ###### cross(cell, s projectName (optional), s columnName (optional)) {#crosscell-s-projectname-optional-s-columnname-optional}
-Returns an array of zero or more rows in the project projectName for which the cells in their column columnName have the same content as the cell in your chosen column. For example, if two projects contained matching names, and you wanted to pull addresses for people by their names from a project called “People” you would apply the following expression to your column of names: 
+Returns an array of zero or more rows in the project projectName for which the cells in their column columnName have the same content as the cell in your chosen column. For example, if two projects contained matching names, and you wanted to pull addresses for people by their names from a project called “People” you would apply the following expression to your column of names:
 ```
 cell.cross("People","Name").cells["Address"].value[0]
 ```
 
-This would match your current column to the “Name” column in “People” and, using those matches, pull the respective “Address” value into your current project. 
+This would match your current column to the “Name” column in “People” and, using those matches, pull the respective “Address” value into your current project.
 
 You may need to do some data preparation with cross(), such as using trim() on your key columns or deduplicating values.
 
-The first argument will be interpreted as `cell.value` if set to `cell`. If you omit projectName and columnName, they will default to the current project and index column (number 0). 
+The first argument will be interpreted as `cell.value` if set to `cell`. If you omit projectName and columnName, they will default to the current project and index column (number 0).
 
 Recipes and more examples for using cross() can be found [on our wiki](https://github.com/OpenRefine/OpenRefine/wiki/Recipes#combining-datasets).
